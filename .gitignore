@@ -1,0 +1,6 @@
+#ansible/roles is used to install roles from ansible-galaxy
+ansible/roles/*
+#the definitions for the roles to install is in the file galaxy-roles.yml
+!ansible/roles/galaxy-roles.yml
+
+.vagrant
