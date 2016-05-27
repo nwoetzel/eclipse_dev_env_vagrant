@@ -7,20 +7,18 @@ require 'getoptlong'
 #http://stackoverflow.com/questions/14124234/how-to-pass-parameter-on-vagrant-up-and-have-it-in-the-scope-of-chef-cookbook
 opts = GetoptLong.new(
   [ '--help', GetoptLong::NO_ARGUMENT ],
-  [ '--eclipse-distro', GetoptLong::REQUIRED_ARGUMENT ],
-  [ '--eclipse-package', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--vmname', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--cpus', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--memory', GetoptLong::REQUIRED_ARGUMENT ],
-  [ '--nfs', GetoptLong::NO_ARGUMENT ]
+  [ '--nfs', GetoptLong::NO_ARGUMENT ],
+  [ '--extra-vars-file', GetoptLong::REQUIRED_ARGUMENT ]
 )
 
-eclipse_distro  = "mars"
-eclipse_package = "java"
 cpus = 2
 memory = 2048
 vmname = (0...8).map { (65 + rand(26)).chr }.join
 nfs = false
+extra_vars_file = ""
 
 opts.each do |opt, arg|
   case opt
@@ -39,20 +37,22 @@ There are some additional arguments available specifically for this Vagrantfile 
   the name of the virtualmachine for the virtual machine provider (e.g. VirtualBox)
 --nfs: (default: #{nfs})
   mount through nfs
---eclipse-distro: (default: #{eclipse_distro})
-  the eclipse distribution
---eclipse-package: (default #{eclipse_package})
-  the eclipse package (e.g. java, cpp, jee, php etc)
+--extra-vars-file:
+  ansible vars in a vars-file (either json or yaml) for provisiong the environment
+  use a relative path in this tree
+  http://docs.ansible.com/ansible/playbooks_variables.html#passing-variables-on-the-command-line
       EOF
       exit
-    when '--eclipse-distro'
-      eclipse_distro = arg
-    when '--eclipse-package'
-      eclipse_package = arg
     when '--cpus'
       cpus = arg.to_i
     when '--memory'
       memory = arg.to_i
+    when '--nfs'
+      nfs = true
+    when '--vmname'
+      vmname = arg
+    when '--extra-vars-file'
+      extra_vars_file = arg
   end # case
 end # each
 
@@ -93,12 +93,8 @@ Vagrant.configure("2") do |config|
 
   # Configure the network interfaces
   config.vm.network :private_network, ip:    "192.168.234.234"
-  config.vm.network :forwarded_port,  guest: 80,    host: 9080
-  config.vm.network :forwarded_port,  guest: 3306,  host: 3307
 
   # Configure shared folders
-#  config.vm.synced_folder "." , "/vagrant", id: "vagrant-root", :nfs => true
-#  config.vm.synced_folder "..", "/var/www", id: "application",  :nfs => true
   config.vm.synced_folder "." , "/vagrant", id: "vagrant-root", :nfs => nfs
 
   # configure the ssh connection
@@ -106,7 +102,6 @@ Vagrant.configure("2") do |config|
 
   # Configure VirtualBox environment
   config.vm.provider :virtualbox do |v|
-#    v.name = (0...8).map { (65 + rand(26)).chr }.join
     v.name = vmname
     v.customize [ "modifyvm", :id, "--memory", memory ]
     v.customize [ "modifyvm", :id, "--cpus", cpus ]
@@ -118,5 +113,13 @@ Vagrant.configure("2") do |config|
 #  end
 
   # Provision the box bootstrapping
-  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.provision "shell" do |s|
+    s.path = "bootstrap.sh"
+#    s.args = [extra_vars_file]
+  end
+  config.vm.provision "shell" do |s|
+    s.path = "ansible.sh"
+    s.args = [extra_vars_file]
+    s.privileged = false
+  end
 end

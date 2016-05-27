@@ -1,0 +1,3 @@
+java_product: jre
+java_version: 8
+java_shell_profile: true

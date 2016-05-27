@@ -1,0 +1,7 @@
+---
+java_product: jre
+java_version: 8
+java_shell_profile: true
+
+eclipse_distro: mars 
+eclipse_package: cpp

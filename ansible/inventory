@@ -1,0 +1,5 @@
+[java]
+localhost ansible_connection=local
+
+[eclipse]
+localhost anible_connection=local

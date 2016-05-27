@@ -3,5 +3,5 @@
 #  version: v1.0
 #  path: /vagrant/ansible/roles/
 - src: https://github.com/nwoetzel/ansible-role-eclipse
-  version: v1.1
+  version: v1.1.2
   path: /vagrant/ansible/roles/
