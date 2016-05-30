@@ -18,12 +18,13 @@ cpus = 2
 memory = 2048
 vmname = (0...8).map { (65 + rand(26)).chr }.join
 nfs = false
-extra_vars_file = ""
+extra_vars_file = "ansible/extra-vars/eclipse_cpp.yml"
 
-opts.each do |opt, arg|
-  case opt
-    when '--help'
-      puts <<-EOF
+begin
+  opts.each do |opt, arg|
+    case opt
+      when '--help'
+        puts <<-EOF
 There are some additional arguments available specifically for this Vagrantfile for deployment.
 
 --help:
@@ -37,24 +38,27 @@ There are some additional arguments available specifically for this Vagrantfile 
   the name of the virtualmachine for the virtual machine provider (e.g. VirtualBox)
 --nfs: (default: #{nfs})
   mount through nfs
---extra-vars-file:
+--extra-vars-file: (default: #{extra_vars_file})
   ansible vars in a vars-file (either json or yaml) for provisiong the environment
   use a relative path in this tree
   http://docs.ansible.com/ansible/playbooks_variables.html#passing-variables-on-the-command-line
-      EOF
-      exit
-    when '--cpus'
-      cpus = arg.to_i
-    when '--memory'
-      memory = arg.to_i
-    when '--nfs'
-      nfs = true
-    when '--vmname'
-      vmname = arg
-    when '--extra-vars-file'
-      extra_vars_file = arg
-  end # case
-end # each
+        EOF
+      when '--cpus'
+        cpus = arg.to_i
+      when '--memory'
+        memory = arg.to_i
+      when '--nfs'
+        nfs = true
+      when '--vmname'
+        vmname = arg
+      when '--extra-vars-file'
+        extra_vars_file = arg
+    end # case
+  end # each
+rescue GetoptLong::InvalidOption => invalid_option
+  puts "there are options that are not handled by that Vagrantfile, but might be handled upstream by vagrant"
+  puts "if they cannot be handled by vagrant, they will cause termination"
+end
 
 Vagrant.configure("2") do |config|
   # Configure the box to use
