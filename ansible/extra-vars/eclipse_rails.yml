@@ -10,3 +10,6 @@ eclipse_plugins:
 
 package_list_eclipse:
   - name: firefox
+
+rvm1_rubies:
+  - ruby-2.1.5

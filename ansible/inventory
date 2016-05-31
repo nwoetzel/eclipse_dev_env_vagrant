@@ -3,3 +3,6 @@ localhost ansible_connection=local
 
 [eclipse]
 localhost anible_connection=local
+
+[rvm]
+localhost anible_connection=local

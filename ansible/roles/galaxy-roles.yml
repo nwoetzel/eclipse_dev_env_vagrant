@@ -7,3 +7,5 @@
   path: /vagrant/ansible/roles/
 - name: GROG.package
   version: v1.2.1
+- name: rvm_io.rvm1-ruby
+  version: v1.3.8
