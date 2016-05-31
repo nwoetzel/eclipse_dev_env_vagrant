@@ -100,6 +100,7 @@ Vagrant.configure("2") do |config|
 
   # Configure shared folders
   config.vm.synced_folder "." , "/vagrant", id: "vagrant-root", :nfs => nfs
+  config.vm.synced_folder ".." , "/project", id: "project-root", :nfs => nfs
 
   # configure the ssh connection
   config.ssh.forward_x11 = true
