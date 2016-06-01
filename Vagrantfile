@@ -63,8 +63,6 @@ end
 # prepend extra_vars_
 extra_vars_file = File.basename( Dir.pwd ) + "/" + extra_vars_file
 
-puts extra_vars_file
-
 Vagrant.configure("2") do |config|
   # Configure the box to use
   config.vm.box       = 'ubuntu/trusty64'
