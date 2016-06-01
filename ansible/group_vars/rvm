@@ -1,2 +1,4 @@
 # do not install any version by default - should be passed through --extra-vars file
 rvm1_rubies: []
+rvm1_install_path: '/home/vagrant/sw/rvm'
+rvm1_user: vagrant
