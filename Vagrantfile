@@ -11,6 +11,7 @@ opts = GetoptLong.new(
   [ '--cpus', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--memory', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--nfs', GetoptLong::NO_ARGUMENT ],
+  [ '--ansible-playbook', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--extra-vars-file', GetoptLong::REQUIRED_ARGUMENT ]
 )
 
@@ -19,6 +20,7 @@ memory = 2048
 vmname = (0...8).map { (65 + rand(26)).chr }.join
 nfs = false
 extra_vars_file = "ansible/extra-vars/eclipse_cpp.yml"
+ansible_playbook = "ansible/site.yml"
 
 begin
   opts.each do |opt, arg|
@@ -38,6 +40,8 @@ There are some additional arguments available specifically for this Vagrantfile 
   the name of the virtualmachine for the virtual machine provider (e.g. VirtualBox)
 --nfs: (default: #{nfs})
   mount through nfs
+--ansible-playbook: (default: #{ansible_playbook})
+  the file containing the ansible deployment playbook
 --extra-vars-file: (default: #{extra_vars_file})
   ansible vars in a vars-file (either json or yaml) for provisiong the environment
   use a relative path in this tree
@@ -51,6 +55,8 @@ There are some additional arguments available specifically for this Vagrantfile 
         nfs = true
       when '--vmname'
         vmname = arg
+      when '--ansible-playbook'
+        ansible_playbook = arg
       when '--extra-vars-file'
         extra_vars_file = arg
     end # case
@@ -62,6 +68,7 @@ end
 
 # prepend extra_vars_
 extra_vars_file = File.basename( Dir.pwd ) + "/" + extra_vars_file
+ansible_playbook = File.basename( Dir.pwd ) + "/" + ansible_playbook
 
 Vagrant.configure("2") do |config|
   # Configure the box to use
@@ -127,7 +134,7 @@ Vagrant.configure("2") do |config|
   end
   config.vm.provision "shell" do |s|
     s.path = "ansible.sh"
-    s.args = [extra_vars_file]
+    s.args = [ansible_playbook,extra_vars_file]
     s.privileged = false
   end
 end
