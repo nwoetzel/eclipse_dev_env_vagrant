@@ -1,0 +1,8 @@
+---
+- include: site.yml
+
+- hosts: [rvm]
+  roles:
+    - role: rvm_io.rvm1-ruby
+      become: yes
+      when: rvm1_rubies|length > 0

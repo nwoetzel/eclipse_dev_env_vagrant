@@ -1,7 +1,4 @@
 ---
-- hosts: [all]
+- hosts: [eclipse]
   roles:
     - ansible-role-eclipse
-    - role: rvm_io.rvm1-ruby
-      become: yes
-      when: rvm1_rubies|length > 0
