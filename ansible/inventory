@@ -6,3 +6,6 @@ localhost anible_connection=local
 
 [rvm]
 localhost anible_connection=local
+
+[nginx]
+localhost anible_connection=local

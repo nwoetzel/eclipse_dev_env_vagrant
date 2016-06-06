@@ -1,0 +1,7 @@
+---
+- include: site.yml
+
+- hosts: [nginx]
+  roles:
+    - role: geerlingguy.nginx
+      become: yes

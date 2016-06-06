@@ -107,7 +107,7 @@ Vagrant.configure("2") do |config|
 
   # Configure the network interfaces
   config.vm.network :private_network, ip:    "192.168.234.234"
-
+  config.vm.network :forwarded_port, guest: 80, host: 9080
   # Configure shared folders
   config.vm.synced_folder "." , "/vagrant", id: "vagrant-root", :nfs => nfs
   config.vm.synced_folder ".." , "/project", id: "project-root", :nfs => nfs

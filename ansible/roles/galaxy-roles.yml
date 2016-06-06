@@ -9,3 +9,5 @@
   version: v1.2.1
 - name: rvm_io.rvm1-ruby
   version: v1.3.8
+- name: geerlingguy.nginx
+  version: 1.9.2
