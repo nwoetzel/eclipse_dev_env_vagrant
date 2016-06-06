@@ -40,3 +40,14 @@ nginx_vhosts:
         fastcgi_param           SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param           HTTPS           off;
       }
+
+mysql_databases:
+  - name:  symfony
+    state: present
+
+mysql_users:
+  - name:           "symfony"
+    password:       "symfony"
+    priv:           "symfony.*:ALL"
+    host:           "localhost"
+    state:          present

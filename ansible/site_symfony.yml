@@ -5,3 +5,8 @@
   roles:
     - role: geerlingguy.nginx
       become: yes
+
+- hosts: [mysql]
+  roles:
+    - role: geerlingguy.mysql
+      become: yes

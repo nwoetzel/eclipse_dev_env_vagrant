@@ -11,3 +11,5 @@
   version: v1.3.8
 - name: geerlingguy.nginx
   version: 1.9.2
+- name: geerlingguy.mysql
+  version: 2.2.1
