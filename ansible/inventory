@@ -10,5 +10,8 @@ localhost anible_connection=local
 [nginx]
 localhost anible_connection=local
 
+[passenger]
+localhost anible_connection=local
+
 [mysql]
 localhost anible_connection=local

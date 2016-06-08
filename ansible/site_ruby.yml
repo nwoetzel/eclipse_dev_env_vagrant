@@ -6,3 +6,13 @@
     - role: rvm_io.rvm1-ruby
       become: yes
       when: rvm1_rubies|length > 0
+
+- hosts: [nginx]
+  roles:
+    - role: geerlingguy.nginx
+      become: yes
+
+- hosts: [passenger]
+  roles:
+    - role: geerlingguy.passenger
+      become: yes

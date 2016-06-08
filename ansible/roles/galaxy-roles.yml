@@ -13,3 +13,5 @@
   version: 1.9.2
 - name: geerlingguy.mysql
   version: 2.2.1
+- name: geerlingguy.passenger
+  version: 1.1.0
