@@ -2,16 +2,19 @@
 localhost ansible_connection=local
 
 [eclipse]
-localhost anible_connection=local
+localhost ansible_connection=local
 
 [rvm]
-localhost anible_connection=local
+localhost ansible_connection=local
 
 [nginx]
-localhost anible_connection=local
+localhost ansible_connection=local
 
 [passenger]
-localhost anible_connection=local
+localhost ansible_connection=local
 
 [mysql]
-localhost anible_connection=local
+localhost ansible_connection=local
+
+[php]
+localhost ansible_connection=local

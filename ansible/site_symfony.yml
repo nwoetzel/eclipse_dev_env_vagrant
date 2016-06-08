@@ -10,3 +10,10 @@
   roles:
     - role: geerlingguy.mysql
       become: yes
+
+- hosts: [php]
+  roles:
+    - role: geerlingguy.php
+      become: yes
+    - role: geerlingguy.composer
+      become: yes
