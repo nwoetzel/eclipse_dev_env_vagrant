@@ -5,7 +5,7 @@ java_shell_profile: true
 
 eclipse_distro: mars 
 eclipse_package: php
-eclipse_plugins:
+eclipse_plugins_install:
   - egit
   - symfony
   - makegood 
