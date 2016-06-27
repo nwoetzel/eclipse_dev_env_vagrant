@@ -10,6 +10,7 @@ eclipse_plugins_install:
   - symfony
   - makegood 
   - redmine_mylyn
+  - pti
 
 package_list_eclipse: []
 
