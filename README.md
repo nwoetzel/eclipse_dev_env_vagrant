@@ -5,6 +5,16 @@ This repository can be used as a submodule in any project, that requires a repro
 It uses [vagrant](https://www.vagrantup.com/) to manage the lifecycle of a virtual machine. While this project gives you a few possibilitites to change the 'hardware setup' of the virtual machine, it will work right out of the box.
 The machine is provisioned (installation and setup of software, libraries and your project) using [ansible](https://www.vagrantup.com/). Many default setups are available through predefined playbooks and variables in files and inventories. But you can have your own or combine it with the available setups for your own project.
 
+## Prerequisites
+
+[VirtualBox](https://www.virtualbox.org/)
+[vagrant](https://www.vagrantup.com/)
+
+## Optional
+
+To speed up repeated installation for the same and even different projects:
+[vagrant-cachier](https://github.com/fgrehm/vagrant-cachier#installation)
+
 ## Mount points
 
 There are two default mount-points in the virtual machine.
