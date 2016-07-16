@@ -36,10 +36,17 @@ vagrant --vmname=ECLIPSE --cpus=2 --memory=2048 --nfs
 
 provision:
 <pre>
-vagrant --ansible-playbook=ansible/site.yml --extra-vars-files=ansible/extra-vars/eclipse_cpp.yml up
+vagrant --ansible-playbook=ansible/site.yml --extra-vars-file=ansible/extra-vars/eclipse_cpp.yml up
 </pre>
 
 provision again after machine was created
 <pre>
-vagrant --ansible-playbook=ansible/site.yml --extra-vars-files=ansible/extra-vars/eclipse_cpp.yml up --provision
+vagrant --ansible-playbook=ansible/site.yml --extra-vars-file=ansible/extra-vars/eclipse_cpp.yml up --provision
 </pre>
+
+### eclipse for R development
+provision:
+<pre>
+vagrant --ansible-playbook=ansible/site.yml --extra-vars-file=ansible/extra-vars/eclipse_r.yml up
+</pre>
+
