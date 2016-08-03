@@ -11,6 +11,7 @@ opts = GetoptLong.new(
   [ '--cpus', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--memory', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--nfs', GetoptLong::NO_ARGUMENT ],
+  [ '--private-ip', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--ansible-playbook', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--extra-vars-file', GetoptLong::REQUIRED_ARGUMENT ]
 )
@@ -19,6 +20,7 @@ cpus = 2
 memory = 2048
 vmname = (0...8).map { (65 + rand(26)).chr }.join
 nfs = false
+private_ip = "192.168.234.234"
 extra_vars_file = "ansible/extra-vars/eclipse_cpp.yml"
 ansible_playbook = "ansible/site.yml"
 
@@ -40,6 +42,8 @@ There are some additional arguments available specifically for this Vagrantfile 
   the name of the virtualmachine for the virtual machine provider (e.g. VirtualBox)
 --nfs: (default: #{nfs})
   mount through nfs
+--private-ip: (default: #{private_ip})
+  ip for the private network
 --ansible-playbook: (default: #{ansible_playbook})
   the file containing the ansible deployment playbook
 --extra-vars-file: (default: #{extra_vars_file})
@@ -53,6 +57,8 @@ There are some additional arguments available specifically for this Vagrantfile 
         memory = arg.to_i
       when '--nfs'
         nfs = true
+      when '--private-ip'
+        private_ip = arg
       when '--vmname'
         vmname = arg
       when '--ansible-playbook'
@@ -115,7 +121,7 @@ Vagrant.configure("2") do |config|
   end
 
   # Configure the network interfaces
-  config.vm.network :private_network, ip:    "192.168.234.234"
+  config.vm.network :private_network, ip: private_ip
   config.vm.network :forwarded_port, guest: 80, host: 9080
   # Configure shared folders
   config.vm.synced_folder "." , "/vagrant", id: "vagrant-root", :nfs => nfs
