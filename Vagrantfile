@@ -4,13 +4,13 @@
 require 'getoptlong'
 
 #http://stackoverflow.com/questions/14124234/how-to-pass-parameter-on-vagrant-up-and-have-it-in-the-scope-of-chef-cookbook
-#http://stackoverflow.com/questions/14124234/how-to-pass-parameter-on-vagrant-up-and-have-it-in-the-scope-of-chef-cookbook
 opts = GetoptLong.new(
   [ '--help', GetoptLong::NO_ARGUMENT ],
   [ '--vmname', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--cpus', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--memory', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--nfs', GetoptLong::NO_ARGUMENT ],
+  [ '--forward-port', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--private-ip', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--ansible-playbook', GetoptLong::REQUIRED_ARGUMENT ],
   [ '--extra-vars-file', GetoptLong::REQUIRED_ARGUMENT ]
@@ -23,6 +23,7 @@ nfs = false
 private_ip = "192.168.234.234"
 extra_vars_file = "ansible/extra-vars/eclipse_cpp.yml"
 ansible_playbook = "ansible/site.yml"
+forward_ports = []
 
 begin
   opts.each do |opt, arg|
@@ -44,6 +45,8 @@ There are some additional arguments available specifically for this Vagrantfile 
   mount through nfs
 --private-ip: (default: #{private_ip})
   ip for the private network
+--forward-port:
+  forward port from guest to host in the form "guest:host"
 --ansible-playbook: (default: #{ansible_playbook})
   the file containing the ansible deployment playbook
 --extra-vars-file: (default: #{extra_vars_file})
@@ -59,6 +62,8 @@ There are some additional arguments available specifically for this Vagrantfile 
         nfs = true
       when '--private-ip'
         private_ip = arg
+      when '--forward-port'
+        forward_ports << arg
       when '--vmname'
         vmname = arg
       when '--ansible-playbook'
@@ -122,7 +127,10 @@ Vagrant.configure("2") do |config|
 
   # Configure the network interfaces
   config.vm.network :private_network, ip: private_ip
-  config.vm.network :forwarded_port, guest: 80, host: 9080
+  forward_ports.each do |forward|
+    guest,host = forward.split ":"
+    config.vm.network :forwarded_port, guest: guest, host: host
+  end
   # Configure shared folders
   config.vm.synced_folder "." , "/vagrant", id: "vagrant-root", :nfs => nfs
   config.vm.synced_folder ".." , "/project", id: "project-root", :nfs => nfs
