@@ -5,5 +5,4 @@ php_packages:
   - php5-mysql
   - php5-sqlite
 
-php_webserver_daemon: nginx
 php_enable_php_fpm: true

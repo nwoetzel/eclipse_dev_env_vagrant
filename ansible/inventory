@@ -7,6 +7,9 @@ localhost ansible_connection=local
 [rvm]
 localhost ansible_connection=local
 
+[apache]
+localhost ansible_connection=local
+
 [nginx]
 localhost ansible_connection=local
 
