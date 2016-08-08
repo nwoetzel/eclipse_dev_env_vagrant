@@ -99,7 +99,9 @@ Vagrant.configure("2") do |config|
     config.cache.enable :generic, {
       "ivy2" => { cache_dir: "/home/vagrant/.ivy2" },
       "sbt" => { cache_dir: "/home/vagrant/.sbt" },
+      "ansible_download" => { cache_dir: "/tmp/ansible_download" },
     }
+
     # OPTIONAL: If you are using VirtualBox, you might want to use that to enable
     # NFS for shared folders. This is also very useful for vagrant-libvirt if you
     # want bi-directional sync

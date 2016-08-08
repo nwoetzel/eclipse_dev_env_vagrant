@@ -8,5 +8,8 @@ eclipse_package: java
 eclipse_plugins_install:
   - statet
 
+eclipse_download_folder_remote: /tmp/ansible_download
+java_download_folder_remote: /tmp/ansible_download
+
 package_list_eclipse:
   - name: r-base

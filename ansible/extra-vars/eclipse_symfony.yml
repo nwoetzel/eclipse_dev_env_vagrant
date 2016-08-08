@@ -14,6 +14,9 @@ eclipse_plugins_install:
 
 package_list_eclipse: []
 
+eclipse_download_folder_remote: /tmp/ansible_download
+java_download_folder_remote: /tmp/ansible_download
+
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "symfony.local"

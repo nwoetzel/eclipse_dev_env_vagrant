@@ -8,6 +8,9 @@ eclipse_package: php
 eclipse_plugins_install:
   - aptana_studio
 
+eclipse_download_folder_remote: /tmp/ansible_download
+java_download_folder_remote: /tmp/ansible_download
+
 package_list_eclipse:
   - name: firefox
 
