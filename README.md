@@ -14,6 +14,7 @@ The machine is provisioned (installation and setup of software, libraries and yo
 
 To speed up repeated installation for the same and even different projects:
 [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier#installation)
+[vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest#installation)
 
 ## Mount points
 
