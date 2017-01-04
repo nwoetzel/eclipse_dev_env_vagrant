@@ -1,6 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-
+Vagrant.require_version ">= 1.9.1"
 require 'getoptlong'
 
 #http://stackoverflow.com/questions/14124234/how-to-pass-parameter-on-vagrant-up-and-have-it-in-the-scope-of-chef-cookbook
@@ -17,7 +17,7 @@ opts = GetoptLong.new(
 )
 
 cpus = 2
-memory = 2048
+memory = 4096
 vmname = (0...8).map { (65 + rand(26)).chr }.join
 nfs = false
 private_ip = "192.168.234.234"
@@ -83,7 +83,7 @@ ansible_playbook = File.basename( Dir.pwd ) + "/" + ansible_playbook
 
 Vagrant.configure("2") do |config|
   # Configure the box to use
-  config.vm.box       = 'ubuntu/trusty64'
+  config.vm.box       = 'bento/ubuntu-16.04'
 #    config.vm.box       = 'bento/centos-7.1'
 
   if Vagrant.has_plugin?("vagrant-cachier")
@@ -138,6 +138,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".." , "/project", id: "project-root", :nfs => nfs
 
   # configure the ssh connection
+  config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
 
   # Configure VirtualBox environment
