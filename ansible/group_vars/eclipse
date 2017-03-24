@@ -1,4 +1,4 @@
-eclipse_distro: luna
+eclipse_distro: neon
 eclipse_package: java
 
 # manipulate eclipse.ini

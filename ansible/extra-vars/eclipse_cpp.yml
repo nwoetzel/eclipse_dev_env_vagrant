@@ -3,7 +3,7 @@ java_product: jre
 java_version: 8
 java_shell_profile: true
 
-eclipse_distro: mars 
+eclipse_distro: neon 
 eclipse_package: cpp
 
 eclipse_download_folder_remote: /tmp/ansible_download
