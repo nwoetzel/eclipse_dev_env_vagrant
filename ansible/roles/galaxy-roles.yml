@@ -6,20 +6,20 @@
   version: v1.5.1
   path: /vagrant/ansible/roles/
 - name: GROG.package
-  version: v1.2.1
+  version: v1.2.4
 - name: rvm_io.ruby
   version: v1.3.9
 - name: geerlingguy.nginx
   version: 1.9.2
 - name: geerlingguy.passenger
-  version: 1.1.0
+  version: 1.1.1
 - name: geerlingguy.apache
-  version: 1.7.2
+  version: 1.7.4
 - src: https://github.com/nwoetzel/ansible-role-passenger
   version: master
 - name: geerlingguy.mysql
-  version: 2.3.1
+  version: 2.5.1
 - name: geerlingguy.php
-  version: 3.4.2
+  version: 3.4.4
 - name: geerlingguy.composer
-  version: 1.4.0
+  version: 1.6.1
