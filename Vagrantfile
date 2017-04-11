@@ -83,7 +83,7 @@ ansible_playbook = File.basename( Dir.pwd ) + "/" + ansible_playbook
 
 Vagrant.configure("2") do |config|
   # Configure the box to use
-  config.vm.box       = 'ubuntu/xenial64'
+  config.vm.box       = 'bento/ubuntu-16.04'
 #    config.vm.box       = 'bento/centos-7.1'
 
   if Vagrant.has_plugin?("vagrant-cachier")
