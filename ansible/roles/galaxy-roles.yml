@@ -2,15 +2,14 @@
 #- src: https://github.com/nwoetzel/ansible-role-java-oracle
 #  version: v1.0
 #  path: /vagrant/ansible/roles/
-- src: https://github.com/nwoetzel/ansible-role-eclipse
-  version: v1.5.1
-  path: /vagrant/ansible/roles/
+- name: nwoetzel.eclipse
+  version: v1.6.0
 - name: GROG.package
   version: v1.2.4
 - name: rvm_io.ruby
   version: v1.3.9
 - name: geerlingguy.nginx
-  version: 1.9.2
+  version: 1.9.7
 - name: geerlingguy.passenger
   version: 1.1.1
 - name: geerlingguy.apache
