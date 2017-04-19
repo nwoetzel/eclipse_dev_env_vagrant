@@ -1,4 +1,4 @@
 ---
 - hosts: [eclipse]
   roles:
-    - ansible-role-eclipse
+    - nwoetzel.eclipse
