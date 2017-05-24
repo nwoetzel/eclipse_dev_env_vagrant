@@ -3,7 +3,7 @@
 #  version: v1.0
 #  path: /vagrant/ansible/roles/
 - name: nwoetzel.eclipse
-  version: v1.6.0
+  version: v1.7.0
 - name: GROG.package
   version: v1.2.4
 - name: rvm_io.ruby
@@ -19,6 +19,6 @@
 - name: geerlingguy.mysql
   version: 2.5.1
 - name: geerlingguy.php
-  version: 3.4.4
+  version: 3.4.5
 - name: geerlingguy.composer
   version: 1.6.1
