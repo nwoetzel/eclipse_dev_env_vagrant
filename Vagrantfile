@@ -134,8 +134,13 @@ Vagrant.configure("2") do |config|
     config.vm.network :forwarded_port, guest: guest, host: host
   end
   # Configure shared folders
-  config.vm.synced_folder "." , "/vagrant", id: "vagrant-root", :nfs => nfs
-  config.vm.synced_folder ".." , "/project", id: "project-root", :nfs => nfs
+  if nfs
+    config.vm.synced_folder "." , "/vagrant", id: "vagrant-root", :nfs => true, :mount_options => ['nfsvers=3', 'vers=3', 'actimeo=1', 'rsize=8192', 'wsize=8192', 'timeo=14', :nolock, :udp, :intr, :auto, :exec, :rw]
+    config.vm.synced_folder ".." , "/project", id: "project-root", :nfs => true, :mount_options => ['nfsvers=3', 'vers=3', 'actimeo=1', 'rsize=8192', 'wsize=8192', 'timeo=14', :nolock, :udp, :intr, :auto, :exec, :rw]
+  else
+    config.vm.synced_folder "." , "/vagrant", id: "vagrant-root"
+    config.vm.synced_folder ".." , "/project", id: "project-root"
+  end
 
   # configure the ssh connection
   config.ssh.forward_agent = true
