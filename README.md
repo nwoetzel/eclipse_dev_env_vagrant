@@ -34,7 +34,7 @@ They are critical for this setup and will not be changed in the future.
 
 Create a virtual machine with name "ECLIPSE", 2 cpus, 2GB of memroy and mount using nfs (usually requires root/sudo rights on the host, since nfs exports need to be written):
 <pre>
-vagrant --vmname=ECLIPSE --cpus=2 --memory=2048 --nfs
+vagrant --vmname=ECLIPSE --cpus=2 --memory=2048 --nfs up
 </pre>
 
 ### eclipse for C++ development

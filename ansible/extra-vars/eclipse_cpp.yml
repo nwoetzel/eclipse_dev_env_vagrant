@@ -2,9 +2,14 @@
 java_product: jre
 java_version: 8
 java_shell_profile: true
+java_oracle_jce_policy: yes
 
 eclipse_distro: neon 
 eclipse_package: cpp
+eclipse_plugins_install:
+  - cmakeed
+  - cmake4eclipse
+  - cmake_helper
 
 eclipse_download_folder_remote: /tmp/ansible_download
 java_download_folder_remote: /tmp/ansible_download
