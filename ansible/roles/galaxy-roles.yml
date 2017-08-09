@@ -3,7 +3,7 @@
 #  version: v1.0
 #  path: /vagrant/ansible/roles/
 - name: nwoetzel.eclipse
-  version: v1.7.3
+  version: v1.8.0
 - name: GROG.package
   version: v1.2.4
 - name: rvm_io.ruby
